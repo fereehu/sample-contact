@@ -1,0 +1,316 @@
+.searchBoxReset() {
+    background: #EFEFEF;
+    border: none;
+    border-bottom: 1px solid #CBCBCB;
+    border-radius: 0;
+}
+
+body {
+    font-size: 18px;
+    background: #F2F2F2;
+}
+
+nav.navbar-default {
+    border: 0;
+    margin-bottom: 0;
+    background: #F2F2F2;
+    
+    .search-box {
+        position: relative;
+        top: 13px;
+        margin-left: 7px;
+        
+        .btn.btn-default {
+            .searchBoxReset();
+            color: #aaa;
+            padding-top: 4px;
+            padding-bottom: 1px;
+            font-size: 26px;
+        }
+        input.form-control {
+            .searchBoxReset();
+            box-shadow: none;
+            width: 325px;
+            padding: 8px;
+            height: auto;
+            font-size: 18px;
+            
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+    
+    .navbar-right {
+        li {
+            a {
+                font-size: 120%;
+                border-right: 1px solid #e7e7e7;
+                height: 34px;
+                display: inline-block;
+                margin-top: 11px;
+                padding: 0 20px;
+                color: #555;
+                
+                .glyphicon {
+                    color: #737373;
+                }
+                
+                &:hover {
+                    color: #111;
+                    
+                    .glyphicon {
+                        color: #111;
+                    }
+                }
+            }
+            
+            &:first-child a {
+                padding: 0 16px;
+                
+                .glyphicon {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
+
+main {
+    .col-sm-4 {
+        padding-top: 15px;
+        padding-right: 0;
+        
+        .contact-list-panel {
+            border-top: 2px solid #9F9EA3;
+
+            .text-muted {
+                font-size: 80%;
+            }
+
+            .contact-list-wrapper {
+                height: 683px;
+                position: relative;
+                
+                .contact-list-slider {
+                    position: absolute;
+                    border-left: 1px solid #E2E2E2;
+                    height: 683px;
+                    top: 0;
+                    left: -25px;
+                    
+                    .handler {
+                        width: 5px;
+                        height: 35px;
+                        background: #9CB5F7;
+                        border: 7px solid #DCE1EB;
+                        box-sizing: content-box;
+                        border-radius: 7px;
+                        margin-left: -10px;
+                        cursor: pointer;
+                    }
+                }
+                
+                .contact-list {
+                    padding: 0;
+
+                    li {
+                        border-radius: 0;
+                        border: 0;
+                        padding: 0;
+
+                        .contact-letter {
+                            padding-left: 80px;
+                            font-weight: bold;
+                            background: #E4E4E4;
+                            font-size: 90%;
+                            line-height: 35px;
+                        }
+
+                        ul {
+                            padding-left: 0;
+
+                            li {
+                                height: 70px;
+                                display: table;
+                                background: #F2F2F2;
+                                cursor: pointer;
+
+                                img {
+                                    width: 70px;
+                                    height: 70px;
+                                    float: left;
+                                }
+
+                                div {
+                                    padding-left: 10px;
+                                    display: table-cell;
+                                    vertical-align: middle;
+                                    width: 100%;
+                                }
+
+                                &:hover, &.active {
+                                    background: #A8C7F5;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .col-sm-8 {
+        background: white;
+        padding: 60px 60px 60px 80px;
+        position: relative;
+        -webkit-box-shadow: 0px 0px 2px 0px rgba(50, 50, 50, 0.3);
+        -moz-box-shadow:    0px 0px 2px 0px rgba(50, 50, 50, 0.3);
+        box-shadow:         0px 0px 2px 0px rgba(50, 50, 50, 0.3);
+
+        .contact-arrow {
+            width: 20px; 
+            height: 40px; 
+            background-image: url(../img/arrow.png);
+            position: absolute;
+            top: 0px;
+            left: -20px;
+        }
+        
+        .contact-panel {
+            border-top: 2px solid #D9D9D9;
+            height: 600px;
+            
+            .contact-panel-inner {
+                img {
+                    width: 107px;
+                    height: 107px;
+                }
+                
+                .name-panel {
+                    padding: 20px 10px 10px 125px;
+
+                    .glyphicon {
+                        color: #669AFB;
+                        font-size: 140%;
+                        margin-right: 15px;
+                    }
+
+                    .contact-name {
+                        font-size: 150%;
+                    }
+                }
+            }
+            .table-responsive{
+                margin-top: 50px;
+            } 
+            table {
+                clear: left;
+                margin-top: 20px;
+                
+                td {
+                    padding: 14px 8px;
+                    
+                    &.type {
+                        color: #B0B0B0;
+                        font-size: 80%;
+                        font-weight: bold;
+                        line-height: 1.8em;
+                    }
+                    
+                    &.value {
+                        color: #343434;
+                    }
+                    
+                    &.location {
+                        color: #CECECE;
+                        text-align: right;
+                        font-size: 80%;
+                        font-weight: bold;
+                        line-height: 1.8em;
+                    }
+                    
+                    &.icon {
+                        width: 50px;
+                        text-align: center;
+                        font-size: 130%;
+                        color: #717171;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Transitions
+.fade {
+    opacity: 1.0;
+    
+    &.ng-hide {
+        opacity: 0;
+        transition: 1s linear all;
+    }
+}
+
+@media (min-width: 1350px) {
+    .container {
+        width: 1340px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav.navbar {
+        .search-box {
+            top: 0;
+        }
+    }
+    
+    .navbar-toggle {
+        margin-top: 25px;
+    }
+    
+    main {
+        .col-sm-4 {
+            margin-right: 15px;
+            
+            .contact-list-panel {
+                
+                .contact-list-wrapper {
+                    height: auto;
+                    
+                    .contact-list-slider {
+                        display: none;
+                    }
+                }
+            }
+        }
+        
+        .col-sm-8 {
+            border-top: 2px solid #888;
+            
+            .contact-arrow {
+                display: none;
+            }
+            
+            .contact-panel {
+                height: auto;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    nav.navbar-default .search-box input.form-control {
+        width: 200px;
+    }
+    
+    main .col-sm-8 {
+        padding: 20px 10px;
+    }
+}
+
+@media (max-width: 350px) {
+    nav.navbar-default .search-box input.form-control {
+        width: 150px;
+    }
+}

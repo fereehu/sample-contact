@@ -1,0 +1,238 @@
+<!doctype html>
+<html ng-app="App">
+    <head>
+        <title>Contact selector</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+
+        <script src="js/vendor/jquery-1.11.2.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.min.js" type="text/javascript"></script>
+        <script src="js/vendor/angular-animate.min.js" type="text/javascript"></script>
+
+        <script src="js/main.js" type="text/javascript"></script>
+    </head>
+    <body ng-controller="ContactsCtrl">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-right">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-menu">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="navbar-form navbar-left">
+                    <div class="input-group search-box">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Find contacts" ng-model="filterName"/>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="header-menu">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#newContact">
+                                <span class="glyphicon glyphicon-folder-open"> </span> 
+                                New
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="editContact hidden" data-toggle="modal" data-target="#editContact">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="contact-list-panel">
+                            <div class="text-muted">
+                                <span>{{ numOfContacts}}</span> contacts
+                            </div>
+
+                            <div class="contact-list-wrapper">
+                                <div class="contact-list-slider">
+                                    <div class="handler">
+
+                                    </div>
+                                </div>
+
+                                <ul class="contact-list list-group">
+                                    <li class="list-group-item" ng-repeat="letter in letters">
+                                        <div class="contact-letter"> {{letter.letter}} </div>
+                                        <ul class="contacts-with-letter"> 
+                                            <li ng-repeat="contact in letter.contacts" ng-click="selectContact($index, $parent.$index, $event)">
+                                                <img src="{{ contact.img}}" />
+                                                <div>{{ contact.name}}</div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="contact-arrow"></div>
+
+                        <div class="contact-panel">
+                            <div ng-show="contact" class="fade">
+                                <div class="contact-panel-inner">
+                                    <img class="contact-img pull-left" src="{{ contact.img}}"/>
+                                    <div class="name-panel">
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="contact-name">{{contact.name}}</span>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tr>
+                                            <td class="type">
+                                                Phone
+                                            </td>
+                                            <td class="value">
+                                                {{contact.phone}}
+                                            </td>
+                                            <td class="location">
+                                                Home
+                                            </td>
+                                            <td class="icon"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="type">
+                                                Email
+                                            </td>
+                                            <td class="value">
+                                                {{contact.email}}
+                                            </td>
+                                            <td class="location">
+                                                Home
+                                            </td>
+                                            <td class="icon">
+                                                <span class="glyphicon glyphicon-envelope"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="type">
+                                                Groups
+                                            </td>
+                                            <td class="value">
+                                                Family
+                                            </td>
+                                            <td class="location"></td>
+                                            <td class="icon"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="editContact" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Edit contact</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="name" class="col-sm-2 control-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="name" ng-model="editedContact.name" placeholder="Full Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone" class="col-sm-2 control-label">Phone</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="phone"  ng-model="editedContact.phone" placeholder="+36 1 234 567 89">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="email"  ng-model="editedContact.email" placeholder="some@email.com">
+                                    </div>
+                                </div>
+                                <input type="hidden" ng-model="contact.id">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="modifyContact()">Edit contact</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+
+        <div class="modal fade" id="newContact" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Create a new contact</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name" placeholder="Full Name" ng-model="newContactName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="col-sm-2 control-label">Phone</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="phone" placeholder="+36 1 234 567 89" ng-model="newContactPhone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-sm-2 control-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="email" placeholder="some@email.com" ng-model="newContactEmail">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="imgUpload">Image</label>
+                                <div class="col-sm-10">
+                                    <input type="file" id="imgUpload">
+                                </div>
+                            </div>
+                            <input type="hidden" ng-model="nextId">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addNewContact()">Add contact</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+</html>

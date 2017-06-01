@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Halmai Ferenc",
+        "phone": "+36303769857",
+        "email": "halmai.ferenc@gmail.com",
+        "img": "img/halmai.jpg",
+        "id": 0
+    },
+    {
+        "name": "King Potter",
+        "phone": "+36 12 57 324",
+        "email": "potter@king.com",
+        "img": "img/potter.jpg",
+        "id": 1
+    },
+    {
+        "name": "Doe John",
+        "phone": "+36323423",
+        "email": "john@doe.com",
+        "img": "img/johndoe.jpg",
+        "id": 2
+    },
+    {
+        "name": "Jane Doe",
+        "phone": "(303)432 3242",
+        "email": "jane@doe.com",
+        "img": "img/janedoe.jpg",
+        "id": 3
+    },
+    {
+        "name": "John King",
+        "phone": "+36 34 53 324",
+        "email": "john@king.com",
+        "img": "img/johnking.jpg",
+        "id": 4
+    }
+]
